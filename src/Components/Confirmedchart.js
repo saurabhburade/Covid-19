@@ -1,9 +1,9 @@
 import React from 'react';
 import Chartkick, { LineChart } from 'react-chartkick';
 import { connect } from 'react-redux';
-Chartkick.options = {
-    colors: ["#fff0", "orange"]
-}
+// Chartkick.options = {
+//   colors: [props.color, "orange"],
+// };
 function Confirmedchart(props) {
 //     let data={}
 // if (props.data) {
@@ -13,27 +13,27 @@ function Confirmedchart(props) {
 //     }) 
 //     console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",data);
 // }
+
 console.log(props.chartData);
     return (
+      <LineChart
     
-            <LineChart
-            zeros={false}
-            colors={["#b2c2bf"]}
-                width={"100%"}
-            xtitle="Time" ytitle="No of Cases"
-                stacked={false}
-                legend={true}   
-            label="Total Confirmed Cases"
-            curve={true}
-                data={props.chatConfirmData}
-            />
-     
-    )
+        zeros={false}
+        colors={["#b8b8b8"]}
+        width={"100%"}
+        // xtitle={props.xtitle||"Date"} ytitle={props.ytitle||"No. of cases"}
+        stacked={false}
+        legend={true}
+        label={props.label}
+        curve={true}
+        data={props.chatConfirmData}
+      />
+    );
 }
 
 const mapStateToProps = state => {
     return {
-        chatConfirmData: state.chatConfirmData
+        // chatConfirmData: state.chatConfirmData
     }
 }
 const mapDispatchToProps = dispatch => {

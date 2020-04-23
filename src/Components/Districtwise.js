@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./dashboard.css";
 import { FaBeer } from "react-icons/fa";
 import { TiThListOutline } from "react-icons/ti";
@@ -7,12 +7,11 @@ import "chart.js";
 import covidIcon from "./Images/06.svg";
 import IndiaMap from "./IndiaMap";
 import { connect } from "react-redux";
-import { fetchStateWise } from "../Redux/ActionCreator";
+import { fetchStateWise, fetchDistrictWise } from "../Redux/ActionCreator";
 import Chart from "react-google-charts";
 import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
-import Header from "./Header";
 Chartkick.options = {
   colors: ["#b00", "#666"],
 
@@ -35,18 +34,47 @@ Chartkick.options = {
   //     ],
   //   },
 };
-class Dashboard extends Component {
+class Districtwise extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      selectedState: "Total",
+    };
   }
   componentDidMount() {
     this.props.fetchStateWise();
   }
+  selectStateHandle = (e) => {
+    console.log(e.target.value);
+    this.setState({
+      selectedState: e.target.value,
+    });
+  };
+  searchClick = () => {
+    if (this.state.selectedState !== "Total") {
+      this.props.fetchDistrictWise(this.state.selectedState);
+    }
+  };
   render() {
     return (
       <div className="dashContainer">
+        <div className="search-state">
+          <select
+            name="Selected State"
+            id="select-state"
+            onChange={this.selectStateHandle}
+          >
+            {this.props.stateData.length !== 0
+              ? this.props.stateData.map((element) => {
+                  return <option value={element.state}>{element.state}</option>;
+                })
+              : null}
+          </select>
+          <button className="searchDistrict-btn" onClick={this.searchClick}>
+            Search
+          </button>
+        </div>
         <div className="dash-material-container">
           <div className="dash-left-container">
             <div className="total-container">
@@ -54,34 +82,20 @@ class Dashboard extends Component {
                 <div className="total-cases-detail">
                   <p className="total-case-text">Active Cases</p>
                   <p className="total-case-number">
-                    {this.props.totalCases.active || "Loading..."}
+                    {this.props.selectedStateTotal.active
+                      ? this.props.selectedStateTotal.active
+                      : this.props.totalCases.active || "Loading..."}
                   </p>
                 </div>
-                {/* <div className="total-case-chart"> */}
-                {/* <Chart
-                    width={"10em"}
-                    height={"100%"}
-                    chartType="LineChart"
-                    loader={<div>Loading Chart</div>}
-                    data={[
-                      ["x", "y"],
-                      [0, 0],
-                      [1, 10],
-                      [2, 0],
-                      [3, 10],
-                    ]}
-                    options={{
-                      legend: "none",
-                    }}
-                  /> */}
-                {/* <Confirmedchart /> */}
-                {/* </div> */}
               </div>
               <div className="total-cases-card">
                 <div className="total-cases-detail">
                   <p className="total-case-text">Confirmed Cases</p>
                   <p className="total-case-number">
-                    {this.props.totalCases.confirmed || "Loading..."}
+                    {this.props.selectedStateTotal.confirmed
+                      ? this.props.selectedStateTotal.confirmed
+                      : this.props.totalCases.confirmed || "Loading..."}
+                    {/* {this.props.totalCases.confirmed || "Loading..."} */}
                   </p>
                 </div>
               </div>{" "}
@@ -89,7 +103,10 @@ class Dashboard extends Component {
                 <div className="total-cases-detail">
                   <p className="total-case-text">Recovered</p>
                   <p className="total-case-number">
-                    {this.props.totalCases.recovered || "Loading..."}
+                    {this.props.selectedStateTotal.recovered
+                      ? this.props.selectedStateTotal.recovered
+                      : this.props.totalCases.recovered || "Loading..."}
+                    {/* {this.props.totalCases.recovered || "Loading..."} */}
                   </p>
                 </div>
               </div>
@@ -97,7 +114,10 @@ class Dashboard extends Component {
                 <div className="total-cases-detail">
                   <p className="total-case-text">Deaths</p>
                   <p className="total-case-number">
-                    {this.props.totalCases.deaths || "Loading..."}
+                    {this.props.selectedStateTotal.deaths
+                      ? this.props.selectedStateTotal.deaths
+                      : this.props.totalCases.deaths || "Loading..."}
+                    {/* {this.props.totalCases.deaths || "Loading..."} */}
                   </p>
                 </div>
               </div>
@@ -108,15 +128,45 @@ class Dashboard extends Component {
               </div>
               <div className="map-state-district-container">
                 <p className="map-state-district-container-title map-title-outer">
-                  States
+                  {this.props.selectedStateTotal.recovered
+                    ? "Districts"
+                    : "States" || "Loading..."}
                 </p>
                 <div className="state-data-card-container">
-                  {this.props.stateData.length !== 0
+                  {Object.keys(this.props.districtWiseData).length !== 0
+                    ? Object.keys(this.props.districtWiseData).map(
+                        (element) => {
+                          return (
+                            <Statecard
+                              percentage={parseInt(
+                                (this.props.districtWiseData[element]
+                                  .recovered *
+                                  100) /
+                                  this.props.districtWiseData[element].confirmed
+                              )}
+                              Confirmed={
+                                this.props.districtWiseData[element].confirmed
+                              }
+                              Active={
+                                this.props.districtWiseData[element].active
+                              }
+                              Recovered={
+                                this.props.districtWiseData[element].recovered
+                              }
+                              Deaths={
+                                this.props.districtWiseData[element].deceased
+                              }
+                              State={element}
+                            />
+                          );
+                        }
+                      )
+                    : this.props.stateData.length !== 0
                     ? this.props.stateData.map((element) => {
                         return (
                           <Statecard
                             percentage={parseInt(
-                              (element.recovered * 100) / element.confirmed
+                              element.confirmed / element.recovered
                             )}
                             Confirmed={element.confirmed}
                             Active={element.active}
@@ -131,33 +181,29 @@ class Dashboard extends Component {
               </div>
             </div>
             <div className="awareness-container">
-              <div className="aw-card">
-                <div className="total-case-chart">
-                  <Confirmedchart
-                    label="Confirmed Cases"
-                    color="#d48c06"
-                    chatConfirmData={this.props.chatConfirmData}
-                  />
-                </div>
-              </div>
-              <div className="aw-card">
-                <div className="total-case-chart">
-                  <Confirmedchart
-                    label="Recovered Cases"
-                    color="#25ad11"
-                    chatConfirmData={this.props.chartRecoveredData}
-                  />
-                </div>
-              </div>{" "}
-              <div className="aw-card">
-                <div className="total-case-chart">
-                  <Confirmedchart
-                    label="Dead Cases"
-                    color="#d11111"
-                    chatConfirmData={this.props.chartDeadData}
-                  />
-                </div>
-              </div>
+              {this.props.selectedStateTotal.recovered ? (
+                <Fragment>
+                  {" "}
+                  <div className="aw-card">
+                    <div className="total-case-chart">
+                      <Confirmedchart
+                        label="Confirmed Cases"
+                        color="#d48c06"
+                        chatConfirmData={this.props.dailyConfirmed}
+                      />
+                    </div>
+                  </div>
+                  <div className="aw-card">
+                    <div className="total-case-chart">
+                      <Confirmedchart
+                        label="Dead Cases"
+                        color="#d11111"
+                        chatConfirmData={this.props.dailyDead}
+                      />
+                    </div>
+                  </div>
+                </Fragment>
+              ) : null}
             </div>
           </div>
           <div className="dash-right-container">
@@ -212,14 +258,16 @@ const mapStateToProps = (state) => {
     totalCases: state.setTotalCases,
     stateData: state.stateData,
     newsUpdate: state.newsUpdate,
-    chatConfirmData: state.chatConfirmData,
-    chartRecoveredData: state.chartRecoveredData,
-    chartDeadData: state.chartDeadData,
+    selectedStateTotal: state.selectedStateTotal,
+    districtWiseData: state.districtWiseData,
+    dailyConfirmed: state.dailyConfirmed,
+    dailyDead: state.dailyDead,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchStateWise: () => dispatch(fetchStateWise()),
+    fetchDistrictWise: (stateName) => dispatch(fetchDistrictWise(stateName)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Districtwise);
