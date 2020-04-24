@@ -1,0 +1,144 @@
+.about-cont {
+  padding: 2% 5%;
+  width: auto;
+  background:linear-gradient(180deg ,rgb(241, 241, 241) 0% , rgb(245, 244, 244) 50% ,white  100% );
+  height:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.about-img{
+    width: 40em;
+    opacity: 0.7;
+}
+.credentials-cont{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1%;
+    align-items: center;
+}
+.author-card{
+    height:auto;
+padding: 5%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+.dev-by{
+    font-size: 0.8em;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+  margin: 0% 2%;
+    
+}
+.author-name{
+     margin: 0;
+  margin: 1% 2%;
+    
+      display: inline-block;
+ white-space: nowrap;
+    padding: 0;
+    font-weight: 700;
+    font-size: 2.2em;
+    color: rgb(102, 102, 102);
+     
+    
+}
+.author-links{
+    /* padding:2% 0% ; */
+    width: 100%;
+     
+       display: flex;
+       justify-content: space-between;
+}
+.author-links > a{
+    width: 100%;
+  /* margin: 0% 2%; */
+  /* padding: 5%; */
+}
+.auth-social-icon{
+    font-weight: 600;
+
+    padding:15%;
+    background-color: rgb(214, 216, 218);
+    border-radius: 10px;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+.git-project-link{
+    padding: 3%;
+    display: flex;
+    justify-content:center;
+    align-self: center;
+     font-size: 1em;
+       background-color: rgb(214, 216, 218);
+    border-radius: 10px; 
+    font-weight: 600;
+    transition-duration: 500ms;
+        
+    cursor: pointer;
+    
+}
+.git-project-link span{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    margin:0% 5%;
+}
+.auth-social-icon:hover{
+    background-color: rgb(235, 236, 236);
+    
+}
+.git-project-link:hover{
+    background-color: rgb(235, 236, 236);
+    
+}
+.about-image-cont{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media(max-width:800px){
+    .about-cont {
+
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+}
+   .about-image-cont{
+   width: auto;
+} 
+.credentials-cont{
+    height: 100%;
+    width: auto;
+    
+    flex-wrap: wrap;
+   
+}
+   .about-img{
+    
+    width: fit-content;
+    opacity: 0.7;
+} 
+.author-card{
+    height:100%;
+padding: 5%;
+margin: 5%;
+width: 100%;
+
+}
+
+
+.auth-social-icon{
+  
+width: fit-content;
+
+}
+}

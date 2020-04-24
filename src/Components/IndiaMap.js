@@ -65,42 +65,40 @@ class IndiaMap extends React.Component {
     render() {
         console.log("props", this.props.mapData);
         return (
-            <div className="map-india-container">
-                <div className="map-india-details-cont">
-                    <p className="map-title-outer">
-                        COVID-19 Affected States
-                    </p>
-                </div>
-                <Chart
-                className="in-map"
-                    chartEvents={[
-                        {
-                            eventName: "select",
-                            callback: ({ chartWrapper }) => {
-                                const chart = chartWrapper.getChart();
-                                const selection = chart.getSelection();
-                                if (selection.length === 0) return;
-                                const region = this.state.data[selection[0].row + 1];
-                                console.log("Selected : " + region);
-                            }
-                        }
-                    ]}
-                    chartType="GeoChart"
-                    width="30em"
-                  
-                    data={this.props.mapData}
-                    options={
-                        {
-                            region: 'IN', // Africa
-                            resolution: 'provinces', //If you want to display provinces in India
-                            colorAxis: {
-                                colors: ['#FCB8B8', 'red'],
-
-                            }
-                        }
-                    }
-                />
+          <div className="map-india-container">
+            <div className="map-india-details-cont">
+              <p className="map-title-outer">COVID-19 Affected States</p>
             </div>
+            <div
+       
+            >
+              <Chart
+                className="in-map"
+                chartEvents={[
+                  {
+                    eventName: "select",
+                    callback: ({ chartWrapper }) => {
+                      const chart = chartWrapper.getChart();
+                      const selection = chart.getSelection();
+                      if (selection.length === 0) return;
+                      const region = this.state.data[selection[0].row + 1];
+                      console.log("Selected : " + region);
+                    },
+                  },
+                ]}
+                chartType="GeoChart"
+                width="auto"
+                data={this.props.mapData}
+                options={{
+                  region: "IN", // Africa
+                  resolution: "provinces", //If you want to display provinces in India
+                  colorAxis: {
+                    colors: ["#FCB8B8", "red"],
+                  },
+                }}
+              />{" "}
+            </div>
+          </div>
         );
     }
 }

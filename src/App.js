@@ -8,6 +8,7 @@ import {BrowserRouter,Link,Route, Switch} from 'react-router-dom'
 import Header from './Components/Header';
 import Districtwise from './Components/Districtwise';
 import Testdata from './Components/Testdata';
+import About from './Components/About';
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
           <Route exact path={"/dashboard"} component={Dashboard} />{" "}
           <Route exact path={"/districtwise"} component={Districtwise} />{" "}
           <Route exact path={"/testdata"} component={Testdata} />{" "}
+          <Route exact path={"/about"} component={About} />{" "}
         </Switch>
       </BrowserRouter>
     </div>

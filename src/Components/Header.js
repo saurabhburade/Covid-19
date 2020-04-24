@@ -6,48 +6,104 @@ import { MdViewList } from "react-icons/md";
 import { GiDrippingTube } from "react-icons/gi";
 import { FiInfo } from "react-icons/fi";
 class Header extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props);
 
-        this.state = {
-                 
-        }
+    this.state = {
+      active: "",
+    };
+  }
+  setDashboardActive = () => {
+    this.setState({
+      active: "dashboard",
+    });
+  };
+  setDistrictwiseActive = () => {
+    this.setState({
+      active: "districtwise",
+    });
+  };
+  setTestDataActive = () => {
+    this.setState({
+      active: "testdata",
+    });
+  };
+  setAboutActive = () => {
+    this.setState({
+      active: "about",
+    });
+  };
+  render() {
+    let active = {};
+    if (window.location.pathname === "/dashboard") {
+      active["background"] = "black";
     }
-
-    render() {
-        return (
-          <Fragment>
-            <div className="dash-menu-container">
-              <div className="menu-item-covid">
-                {/* < className="covid-icon" /> */}
-                <img className="covid-icon" src={covidIcon} alt="covid" />
-              </div>
-              <div className="menu-right-cont">
-                {/* <div className="menu-item"> */}
-                <Link
-                  className="menu-item" 
-                  // style={window.location.pathname === "/dashboard"?`${background}:black`:""}
-                  to={"/dashboard"}
-                >
-                  <TiThListOutline className="menu-icon" />{" "}
-                  <span>Dashboard</span>
-                </Link>
-                {/* </div> */}
-                <Link className="menu-item" to={"/districtwise"}>
-                  <MdViewList className="menu-icon" /> <span>Districtwise</span>
-                </Link>
-                <Link className="menu-item" to={"/testdata"}>
-                  <GiDrippingTube className="menu-icon" />{" "}
-                  <span>Test-Data</span>
-                </Link>
-                <Link className="menu-item" to={"/district"}>
-                  <FiInfo className="menu-icon" /> <span>About</span>
-                </Link>
-              </div>
-            </div>
-          </Fragment>
-        );
-    }
+    return (
+      <Fragment>
+        <div className="dash-menu-container">
+          <div
+        
+            className="menu-item-covid"
+          >
+            {/* < className="covid-icon" /> */}
+            <img className="covid-icon" src={covidIcon} alt="covid" />
+            <p className="logo-name">COVID-19</p>
+          </div>
+          <div className="menu-right-cont">
+            {/* <div className="menu-item"> */}
+            <Link
+              onClick={this.setDashboardActive}
+              className="menu-item"
+              // style={active}
+              style={
+                this.state.active === "dashboard"
+                  ? { background: "#f5f3f2" }
+                  : {}
+              }
+              to={"/dashboard"}
+            >
+              <TiThListOutline className="menu-icon" /> <span>Dashboard</span>
+            </Link>
+            {/* </div> */}
+            <Link
+              className="menu-item"
+              style={
+                this.state.active === "districtwise"
+                  ? { background: "#f5f3f2" }
+                  : {}
+              }
+              onClick={this.setDistrictwiseActive}
+              to={"/districtwise"}
+            >
+              <MdViewList className="menu-icon" /> <span>Districtwise</span>
+            </Link>
+            <Link
+              className="menu-item"
+              style={
+                this.state.active === "testdata"
+                  ? { background: "#f5f3f2" }
+                  : {}
+              }
+              onClick={this.setTestDataActive}
+              to={"/testdata"}
+            >
+              <GiDrippingTube className="menu-icon" /> <span>Test-Data</span>
+            </Link>
+            <Link
+              className="menu-item"
+              style={
+                this.state.active === "about" ? { background: "#f5f3f2" } : {}
+              }
+              onClick={this.setAboutActive}
+              to={"/about"}
+            >
+              <FiInfo className="menu-icon" /> <span>About</span>
+            </Link>
+          </div>
+        </div>
+      </Fragment>
+    );
+  }
 }
 
 export default Header

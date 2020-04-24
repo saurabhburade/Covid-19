@@ -46,10 +46,16 @@ class Districtwise extends Component {
             name="Selected State"
             id="select-state"
             onChange={this.selectStateHandle}
+            placeholder="Select State"
           >
+            <option value="Total" >Select State</option>
             {this.props.stateData.length !== 0
               ? this.props.stateData.map((element) => {
-                  return <option value={element.state}>{element.state}</option>;
+                 if (element.state!=="Total") {
+                   return (
+                     <option value={element.state}>{element.state}</option>
+                   );
+                 };
                 })
               : null}
           </select>
