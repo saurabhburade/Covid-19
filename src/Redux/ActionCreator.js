@@ -13,6 +13,7 @@ import {
   SET_STATE_DAILY_DEAD,
   SET_DEAD_CHART_DATA,
   SET_RECOVERED_CHART_DATA,
+  SET_TEST_DATA,
 } from "./ActionTypes";
 
 export const fetchStateWise = () => {
@@ -84,10 +85,37 @@ export const fetchStateWise = () => {
             dispatch(setTodayNews(Arr))
             console.log('data :', Arr,data);
 
+        }).catch(err=>console.log(err))
+        states_tested_data().then(res=>{
+          console.log(res.states_tested_data);
+          let arr=[]
+         if (res.states_tested_data.length!==0) {
+           for (let index = 0; index < res.states_tested_data.length; index++) {
+             const element = res.states_tested_data[index];
+             if (
+               new Date().getDate() -
+                 1 +
+                 "/" +
+                 "0" +
+                 (new Date().getMonth() + 1) +
+                 "/" +
+                 new Date().getFullYear() ==
+               element.updatedon
+             ) {
+               arr.push(element)
+             }
+           }
+           dispatch(setStateTestData(arr));
+         }
         })
     }
 }
-
+const setStateTestData = (payload) => {
+  return {
+    type: SET_TEST_DATA,
+    payload,
+  };
+};
 const setTodayNews = (payload) => {
     return {
         type: SET_TODAY_NEWS,
@@ -164,6 +192,13 @@ const districtwise = async () => {
 };
 const states_daily = async () => {
   const result = await fetch("https://api.covid19india.org/states_daily.json");
+  const res = await result.json();
+  return res;
+};
+const states_tested_data = async () => {
+  const result = await fetch(
+    "https://api.covid19india.org/state_test_data.json"
+  );
   const res = await result.json();
   return res;
 };

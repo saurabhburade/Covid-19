@@ -24,7 +24,11 @@ class Header extends Component {
               </div>
               <div className="menu-right-cont">
                 {/* <div className="menu-item"> */}
-                <Link className="menu-item" to={"/dashboard"}>
+                <Link
+                  className="menu-item" 
+                  // style={window.location.pathname === "/dashboard"?`${background}:black`:""}
+                  to={"/dashboard"}
+                >
                   <TiThListOutline className="menu-icon" />{" "}
                   <span>Dashboard</span>
                 </Link>
@@ -32,7 +36,7 @@ class Header extends Component {
                 <Link className="menu-item" to={"/districtwise"}>
                   <MdViewList className="menu-icon" /> <span>Districtwise</span>
                 </Link>
-                <Link className="menu-item" to={"/district"}>
+                <Link className="menu-item" to={"/testdata"}>
                   <GiDrippingTube className="menu-icon" />{" "}
                   <span>Test-Data</span>
                 </Link>

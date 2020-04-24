@@ -491,7 +491,7 @@ text-decoration: none ;
   outline: none;
   border-radius: 5px;
   border:1px solid rgb(236, 236, 236);
-  margin: 0% 5%;
+
   padding: 1%;
   width: 100%;
   background-color: #f7f7f8;
@@ -506,10 +506,15 @@ text-decoration: none ;
  option:hover{
    background-color: rgb(212, 206, 206);
  }
+ .search-btn-cont{
+    width:25em;
+    display: flex;
+    justify-content: center;
+ }
  .searchDistrict-btn{
-   width: auto;
-
-   padding:1% 2%;
+ width: 100%;
+margin: 5% 10%;
+   padding: 5% ;
    background: rgb(216, 214, 214);
    color: #30185c;
    font-weight: 600;
@@ -518,8 +523,9 @@ text-decoration: none ;
    outline: none;
    cursor: pointer;
    box-shadow: 0px 1px 10px rgb(243, 243, 243);
+   transition-duration: 200ms;
    
  }
  .searchDistrict-btn:active{
-   background-color: #dfdbdb;
+   background-color: #bdbbbb;
  }

@@ -15,24 +15,6 @@ import cough from "./Images/coughing__monochromatic.svg";
 Chartkick.options = {
   colors: ["#b00", "#666"],
 
-  //   scales: {
-  //     yAxes: [
-  //       {
-  //         gridLines: {
-  //           drawBorder: false,
-  //         },
-  //       },
-  //     ],
-  //   },
-  //   scales: {
-  //     xAxes: [
-  //       {
-  //         ticks: {
-  //           display: false, //this will remove only the label
-  //         },
-  //       },
-  //     ],
-  //   },
 };
 class Districtwise extends Component {
   constructor(props) {
@@ -71,9 +53,11 @@ class Districtwise extends Component {
                 })
               : null}
           </select>
-          <button className="searchDistrict-btn" onClick={this.searchClick}>
-            Search
-          </button>
+          <div className="search-btn-cont">
+            <button className="searchDistrict-btn" onClick={this.searchClick}>
+              Search
+            </button>
+          </div>
         </div>
         <div className="dash-material-container">
           <div className="dash-left-container">
