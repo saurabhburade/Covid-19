@@ -41,14 +41,11 @@ class Header extends Component {
     return (
       <Fragment>
         <div className="dash-menu-container">
-          <div
-        
-            className="menu-item-covid"
-          >
+          <Link to={"/"} className="menu-item-covid">
             {/* < className="covid-icon" /> */}
             <img className="covid-icon" src={covidIcon} alt="covid" />
             <p className="logo-name">COVID-19</p>
-          </div>
+          </Link>
           <div className="menu-right-cont">
             {/* <div className="menu-item"> */}
             <Link

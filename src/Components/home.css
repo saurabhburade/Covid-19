@@ -1,0 +1,65 @@
+.home-cont{
+
+
+    width: auto;
+    min-height: 60vh;
+  /* background:linear-gradient(180deg ,rgb(241, 241, 241) 0% , rgb(245, 244, 244) 50% ,white  100% ); */
+    background-image: url("./Images/undraw_work_chat_erdt.svg");
+    background-repeat:  no-repeat;
+  background-position-x: right;
+    background-size: contain;
+    margin:5% 10%;
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+}
+.project-title{
+    font-size: 2em;
+    font-weight: 600;
+    color: rgb(78, 92, 105);
+ 
+    white-space: pre-wrap;
+}
+.project-author a{
+    width: auto !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    
+   
+}
+.project-author > p >span{
+    color: rgb(39, 39, 39);
+    font-weight: 700;
+    font-size: 1.2em;
+    
+    
+}
+.project-author{
+    font-weight: 500;
+    font-size: 1em;
+}
+@media(max-width:800px){
+    .home-cont{
+
+
+    width: auto;
+    min-height: 60vh;
+  /* background-color:linear-gradient(180deg ,rgb(241, 241, 241) 0% , rgb(245, 244, 244) 50% ,white  100% ); */
+    background-image: url("./Images/undraw_work_chat_erdt.svg");
+    background-repeat:  no-repeat;
+  background-position-y:bottom ;
+    background-size: contain;
+    margin:5% 1%;
+    padding: 5% 10%;
+    display: flex;
+    justify-content: flex-start;
+
+    flex-direction: column;
+}
+}
