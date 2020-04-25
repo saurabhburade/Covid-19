@@ -5,6 +5,17 @@
   height:100%;
   display: flex;
   justify-content: space-between;
+  opacity: 0.1;
+  transition-duration: 900ms;
+  animation: animate 1000ms forwards;
+}
+@keyframes animate {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .about-img{
     width: 40em;

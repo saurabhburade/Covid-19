@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +36,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+.loader{
+  position: absolute;
+  z-index: 999;
+min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:linear-gradient(180deg ,rgb(241, 241, 241) 0% , rgb(245, 244, 244) 50% ,rgba(255, 255, 255, 0)  100% );
+ 
+  bottom: 0;
+  overflow: hidden;
+
+}
+.loader > img{
+  /* position: absolute; */
+  height: 100%;
+  width: 100%;
 }

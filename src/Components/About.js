@@ -5,6 +5,7 @@ import loader from "./Images/loader.svg";
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 function About() {
+  console.log("about");
   return (
     <div className="about-cont">
       <div className="credentials-cont">
@@ -64,7 +65,6 @@ function About() {
       <div className="about-image-cont">
         <img src={about} alt="aa" className="about-img" />
       </div>
-      {/* <img style={{ width: "10em" }} src={loader} alt="" /> */}
     </div>
   );
 }

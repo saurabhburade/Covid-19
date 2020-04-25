@@ -33,15 +33,20 @@ class Header extends Component {
       active: "about",
     });
   };
+  setHomeActive=()=>{
+    this.setState({
+      active: "",
+    });
+  }
   render() {
-    let active = {};
-    if (window.location.pathname === "/dashboard") {
-      active["background"] = "black";
-    }
     return (
       <Fragment>
         <div className="dash-menu-container">
-          <Link to={"/"} className="menu-item-covid">
+          <Link
+            to={"/"}
+            className="menu-item-covid"
+            onClick={this.setHomeActive}
+          >
             {/* < className="covid-icon" /> */}
             <img className="covid-icon" src={covidIcon} alt="covid" />
             <p className="logo-name">COVID-19</p>

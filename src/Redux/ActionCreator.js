@@ -58,14 +58,19 @@ export const fetchStateWise = () => {
 
             }
             dispatch(fetchStateWiseSuccess(DataArray, arr))
-            dispatch(loading(false))
+           setTimeout(() => {
+              dispatch(loading(false));
+           }, 2000);
 
         })
             .catch(err => {
                 if (err) {
                     console.log(err);
                     dispatch(fetchStateWiseFail())
-                    dispatch(loading(false))
+                    // dispatch(loading(false))
+                      setTimeout(() => {
+                        dispatch(loading(false));
+                      }, 2000);
                 }
             })
 
@@ -204,6 +209,7 @@ const states_tested_data = async () => {
 };
 export const fetchDistrictWise=(stateName)=>{
 return (dispatch,getState)=>{
+  dispatch(loading(true));
      districtwise().then(result=>{
          
         if (result[stateName].districtData) {
@@ -214,10 +220,17 @@ return (dispatch,getState)=>{
                  console.log(element);
                  dispatch(setStateTotalData(element));
                  dispatch(setStateCode(element.statecode.toLowerCase()));
+  // dispatch(loading(false));
+    setTimeout(() => {
+      dispatch(loading(false));
+    }, 2000);
+                 
              }
          });
          
         }
+  dispatch(loading(true));
+        
         states_daily().then(data=>{
             let dataConf={},dataDead={}
             console.log(data.states_daily);
@@ -248,6 +261,11 @@ return (dispatch,getState)=>{
                 }
                 dispatch(setStateDailyConfirmed(dataConf));
                 dispatch(setStateDailyDead(dataDead));
+  // dispatch(loading(false));
+    setTimeout(() => {
+      dispatch(loading(false));
+    }, 2000);
+                
             }
         })
          console.log(result[stateName].districtData);

@@ -42,7 +42,7 @@ class Dashboard extends Component {
     this.state = {};
   }
   componentDidMount() {
-    this.props.fetchStateWise();
+    // this.props.fetchStateWise();
   }
   render() {
     return (
@@ -219,7 +219,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchStateWise: () => dispatch(fetchStateWise()),
+    // fetchStateWise: () => dispatch(fetchStateWise()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

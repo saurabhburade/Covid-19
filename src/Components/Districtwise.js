@@ -18,15 +18,14 @@ Chartkick.options = {
 };
 class Districtwise extends Component {
   constructor(props) {
+    
     super(props);
-
+console.log("district");
     this.state = {
       selectedState: "Total",
     };
   }
-  componentDidMount() {
-    this.props.fetchStateWise();
-  }
+
   selectStateHandle = (e) => {
     console.log(e.target.value);
     this.setState({
@@ -48,14 +47,14 @@ class Districtwise extends Component {
             onChange={this.selectStateHandle}
             placeholder="Select State"
           >
-            <option value="Total" >Select State</option>
+            <option value="Total">Select State</option>
             {this.props.stateData.length !== 0
               ? this.props.stateData.map((element) => {
-                 if (element.state!=="Total") {
-                   return (
-                     <option value={element.state}>{element.state}</option>
-                   );
-                 };
+                  if (element.state !== "Total") {
+                    return (
+                      <option value={element.state}>{element.state}</option>
+                    );
+                  }
                 })
               : null}
           </select>
@@ -239,6 +238,8 @@ class Districtwise extends Component {
             </div>
           </div>
         </div>
+        
+        {/* <img style={{ width: "10em" }} src={loader} alt="" /> */}
       </div>
     );
   }
@@ -256,7 +257,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchStateWise: () => dispatch(fetchStateWise()),
+    // fetchStateWise: () => dispatch(fetchStateWise()),
     fetchDistrictWise: (stateName) => dispatch(fetchDistrictWise(stateName)),
   };
 };
