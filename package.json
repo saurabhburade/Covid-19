@@ -2,6 +2,7 @@
   "name": "covid-19",
   "version": "0.1.0",
   "private": true,
+   "engines" : { "node" : ">=0.10.3 <0.12" } ,
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.16",
     "@testing-library/jest-dom": "^4.2.4",
