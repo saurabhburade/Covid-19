@@ -32,7 +32,7 @@ function About() {
             </a>{" "}
             <a href="https://www.facebook.com/princesaurabh121">
               <span className="auth-social-icon">
-                <FaFacebookF />{" "}
+                <FaFacebookF />
               </span>
             </a>
           </div>
