@@ -1,0 +1,59 @@
+
+.game-cont{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffffff;
+    flex-wrap: wrap;
+}
+.game-card{
+    width: 20em;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
+    background-color: #ffffff;
+    background: url('./Images/Liquid-Cheese.svg') no-repeat;
+    background-size: cover;
+    margin: 2%;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 2%;
+    box-shadow: 0px 2px 5px #eeeeee;
+    position: relative;
+}
+.ec{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    /* background: rgb(224, 224, 224); */
+    padding: 1%;
+    border-radius: 10px;
+}
+.ec > img{
+    width: 2.5em;
+}
+.head-title{
+    margin: 2% 0%;
+    text-align: left;
+    padding: 5% 0%;
+}
+.game-title{
+
+    font-size: 1.3em;
+    font-weight: 700;
+    color: rgb(120, 120, 121);
+}
+.details{   
+    width: auto;
+    
+    display: flex;
+    flex-direction: column;
+    
+}
+.det{
+  display: flex;
+  justify-content: space-between;
+   padding: 1%;
+    color: #464646;
+   
+}
+

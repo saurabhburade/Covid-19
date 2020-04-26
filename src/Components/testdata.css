@@ -51,15 +51,15 @@ font-weight: 600;
 margin:2% 5%;     
 }
 .test-data-detail p,a {
-    font-size: .9em;
+    font-size: 1em;
 font-weight: 600; 
 color: rgb(56, 56, 56);
 display: flex;
 justify-content: space-between;
 }
-.test-data-detail span,a{
-    width: 100%;
-    font-size: 1em;
+.test-data-detail span{
+
+ width: 100%;
     /* background-color: bisque; */
     /* text-align: center; */
     padding: 1%;

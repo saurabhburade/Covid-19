@@ -13,6 +13,7 @@ import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
 import Header from "./Header";
+import MapChart from "./MapChart";
 Chartkick.options = {
   colors: ["#b00", "#666"],
 
@@ -104,7 +105,10 @@ class Dashboard extends Component {
             </div>
             <div className="map-and-details-container">
               <div className="map">
-                <IndiaMap />
+                {/* <IndiaMap /> */}
+                <div className="map-chart">
+                  <MapChart />
+                </div>
               </div>
               <div className="map-state-district-container">
                 <p className="map-state-district-container-title map-title-outer">

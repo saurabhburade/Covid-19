@@ -12,6 +12,7 @@ import Chart from "react-google-charts";
 import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
+import MapChart from "./MapChart";
 Chartkick.options = {
   colors: ["#b00", "#666"],
 
@@ -113,7 +114,9 @@ console.log("district");
             </div>
             <div className="map-and-details-container">
               <div className="map">
-                <IndiaMap />
+                <div className="map-chart">
+                  <MapChart />
+                </div>{" "}
               </div>
               <div className="map-state-district-container">
                 <p className="map-state-district-container-title map-title-outer">
@@ -238,7 +241,7 @@ console.log("district");
             </div>
           </div>
         </div>
-        
+
         {/* <img style={{ width: "10em" }} src={loader} alt="" /> */}
       </div>
     );

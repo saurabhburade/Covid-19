@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./about.css";
+import "./mapchart.css";
 import about from "./Images/Artboard_1.svg";
 import loader from "./Images/loader.svg";
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
+
+import MapChart from "./MapChart";
+import ReactTooltip from "react-tooltip";
+
 function About() {
-  console.log("about");
+
+
   return (
     <div className="about-cont">
+
       <div className="credentials-cont">
         <div className="author-card">
           <div>
@@ -55,17 +62,14 @@ function About() {
             </a>
           </div>
         </div>
-        {/* <div className="collaborators">
-          <div className="collab-title">Covid-19 India</div>
-          <div className="collab-git-link">
-            <p>Github</p>
-          </div>
-        </div> */}
       </div>
       <div className="about-image-cont">
         <img src={about} alt="aa" className="about-img" />
       </div>
     </div>
+    // <div className="map-chart">
+    //   <MapChart />
+    // </div>
   );
 }
 
