@@ -8,7 +8,7 @@ import covidIcon from "./Images/06.svg";
 import IndiaMap from "./IndiaMap";
 import { connect } from "react-redux";
 import { fetchStateWise, fetchDistrictWise } from "../Redux/ActionCreator";
-import Chart from "react-google-charts";
+// import Chart from "react-google-charts";
 import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
