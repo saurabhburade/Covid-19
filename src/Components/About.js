@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./about.css";
 import "./mapchart.css";
 import about from "./Images/Artboard_1.svg";
-import loader from "./Images/loader.svg";
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 
-import MapChart from "./MapChart";
-import ReactTooltip from "react-tooltip";
-import StateMapChart from "./StateMapChart";
+// import MapChart from "./MapChart";
+// import ReactTooltip from "react-tooltip";
+// import StateMapChart from "./StateMapChart";
 
 function About() {
 
