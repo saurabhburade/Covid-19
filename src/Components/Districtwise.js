@@ -13,6 +13,7 @@ import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
 import MapChart from "./MapChart";
+import StateMapChart from "./StateMapChart";
 Chartkick.options = {
   colors: ["#b00", "#666"],
 
@@ -115,7 +116,11 @@ console.log("district");
             <div className="map-and-details-container">
               <div className="map">
                 <div className="map-chart">
-                  <MapChart />
+                  {this.props.selectedStateCode.toUpperCase() === "MH" ? (
+                    <StateMapChart />
+                  ) : (
+                    <MapChart />
+                  )}
                 </div>{" "}
               </div>
               <div className="map-state-district-container">
@@ -256,6 +261,8 @@ const mapStateToProps = (state) => {
     districtWiseData: state.districtWiseData,
     dailyConfirmed: state.dailyConfirmed,
     dailyDead: state.dailyDead,
+    selectedStateCode:state.selectedStateCode
+    
   };
 };
 const mapDispatchToProps = (dispatch) => {

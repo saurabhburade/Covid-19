@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import {scaleLinear } from "d3-scale";
-import { csv } from "d3-fetch";
+
 import { connect } from "react-redux";
+import { csvfy } from "./jsonToCsv";
+import * as d3 from "d3"
+// import axios from "axios";
+// import { unwind } from "json2csv/transforms";
+// const { writeFileSync } = require("");
 
 const geoUrl =
   // "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
-  "https://www.covid19india.org/maps/india.json";
-  // "https://raw.githubusercontent.com/varunon9/india-choropleth-javascript/master/src/india.topo.json";
+  // "https://www.covid19india.org/maps/india.json";
+  //   "https://raw.githubusercontent.com/varunon9/india-choropleth-javascript/master/src/india.topo.json";
+  "https://www.covid19india.org/maps/maharashtra.json";
 
-const MapChart = (props) => {
+const StateMapChart = (props) => {
+    console.log("  csvfy()", csvfy());
   const [selectedMapDetail, setselectedMapDetail] = useState({
     state: "Hover State",
     confirmed: 0,
@@ -28,21 +35,36 @@ const MapChart = (props) => {
   const maxLimit = Math.max(...maxArr);
   console.log("maxArr");
   const colorScale = scaleLinear()
-    .domain([0, maxLimit])
-    .range(["#ffedea", "#782618"]);
+    .domain([0, 700])
+    .range(["#f7f7f7", "#782618"]);
 
   const [data, setData] = useState([]);
-  const [content, setContent] = useState("");
+  // const [content, setContent] = useState("");
+const [selectedStateCode, setselectedStateCode] = useState(
+  props.selectedStateCode
+);
 
-  useEffect(() => {
-    // https://www.bls.gov/lau/
-    csv("https://api.covid19india.org/csv/latest/state_wise.csv").then(
-      (counties) => {
-        setData(counties);
-        console.log("object",counties);
-      }
-    );
-  }, []);
+  
+  
+
+useEffect(() => {
+  d3.json("https://api.covid19india.org/v2/state_district_wise.json")
+    .then((counties) => {
+      console.log("counties", counties);
+      const stateSelected = counties.find((el) => {
+        return el.statecode === selectedStateCode.toUpperCase();
+      });
+      setData(stateSelected.districtData);
+    })
+    .catch((err) => console.log(err));
+}, [props.selectedStateCode]);
+
+       // https://www.bls.gov/lau/
+ 
+  
+  
+  
+
   const geographyStyle = {
     default: {
       outline: "none",
@@ -62,58 +84,53 @@ const MapChart = (props) => {
   function mapClick(geo, cur) {
     console.log(geo, cur);
   }
+  
+
   return (
     <>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{
-          scale: 1000,
-          center: [78.9629, 22.5937],
+          scale: 4000,
+          center: [77.0629, 18.5937],
         }}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => {
-              
-              const cur = data.find((s) => {
-                console.log("s geo india",s,geo);
-                return s.State === geo.properties.st_nm;
-              });
-              console.log(
-                "cur",
-                cur
-                  ? "conf in " +
-                      parseInt(cur.Confirmed) +
-                      "conf  " +
-                      cur.Confirmed
-                  : null
-              );
+              const cur = data.find((s) =>{
+                  
+                console.log("s, geo.district", s, geo);
+                // return s["districtData"][0].district === geo.properties.district});
+                return s.district === geo.properties.district;});
+              console.log("cur", cur, cur ? typeof cur.confirmed : "not");
               return (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={cur ? colorScale(parseInt(cur.Confirmed)) : "#cfff"}
+                  fill={cur ? colorScale(parseInt(cur.confirmed)) : "#cfff"}
                   style={geographyStyle}
+                  // title="Hello"
                   stroke="#6d6d6d"
                   strokeWidth={0.2}
-                  onClick={() => {
-                    if (cur) {
-                      setselectedMapDetail({
-                        state: cur.State,
-                        confirmed: cur.Confirmed,
-                        active: cur.Active,
-                        recovered: cur.Recovered,
-                        deaths: cur.Deaths,
-                      });
-                    }
-                    console.log("selectedMapDetail", selectedMapDetail);
-                  }}
-                  onMouseLeave={() => {
-                    if (cur) {
-                      setselectedMapDetail({});
-                    }
-                    console.log("selectedMapDetail", selectedMapDetail);
-                  }}
+                  // onClick={() => {
+                  //   if (cur) {
+                  //     setselectedMapDetail({
+                  //       state: cur.State,
+                  //       confirmed: cur.Confirmed,
+                  //       active: cur.Active,
+                  //       recovered: cur.Recovered,
+                  //       deaths: cur.Deaths,
+                  //     });
+                  //   }
+                  //   console.log("selectedMapDetail", selectedMapDetail);
+                  // }}
+                  // onMouseLeave={() => {
+                  //   if (cur) {
+                  //     setselectedMapDetail({});
+                  //   }
+                  //   console.log("selectedMapDetail", selectedMapDetail);
+                  // }}
                 ></Geography>
               );
             })
@@ -148,6 +165,7 @@ const mapStateToProps = (state) => {
   return {
     totalCases: state.setTotalCases,
     stateData: state.stateData,
+    selectedStateCode:state.selectedStateCode
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -155,5 +173,5 @@ const mapDispatchToProps = (dispatch) => {
     // fetchStateWise: () => dispatch(fetchStateWise()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(MapChart);
+export default connect(mapStateToProps, mapDispatchToProps)(StateMapChart);
 // export default MapChart;

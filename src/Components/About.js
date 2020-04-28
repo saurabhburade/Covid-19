@@ -8,6 +8,7 @@ import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 
 import MapChart from "./MapChart";
 import ReactTooltip from "react-tooltip";
+import StateMapChart from "./StateMapChart";
 
 function About() {
 
@@ -68,7 +69,7 @@ function About() {
       </div>
     </div>
     // <div className="map-chart">
-    //   <MapChart />
+    //   <StateMapChart />
     // </div>
   );
 }
