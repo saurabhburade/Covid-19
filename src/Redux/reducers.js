@@ -1,4 +1,4 @@
-import { LOADING, FETCH_STATE_WISE_SUCCESS, FETCH_STATE_WISE_FAIL, SET_TOTAL_CASES, SET_CHART_DATA, SET_CONFIRM_CHART_DATA, SET_TODAY_NEWS, SET_DISTRICT_WISE, SET_STATE_TOTAL, SET_STATE_CODE, SET_STATE_DAILY_CONFIRMED, SET_STATE_DAILY_DEAD, SET_DEAD_CHART_DATA, SET_RECOVERED_CHART_DATA, SET_TEST_DATA } from "./ActionTypes";
+import { LOADING, FETCH_STATE_WISE_SUCCESS, FETCH_STATE_WISE_FAIL, SET_TOTAL_CASES, SET_CHART_DATA, SET_CONFIRM_CHART_DATA, SET_TODAY_NEWS, SET_DISTRICT_WISE, SET_STATE_TOTAL, SET_STATE_CODE, SET_STATE_DAILY_CONFIRMED, SET_STATE_DAILY_DEAD, SET_DEAD_CHART_DATA, SET_RECOVERED_CHART_DATA, SET_TEST_DATA, SET_STATE_MAP_DATA, SET_STATE_DISTRICT_DATA } from "./ActionTypes";
 
 const INITIAL_STATE = {
   mapData: [],
@@ -15,7 +15,9 @@ const INITIAL_STATE = {
   selectedStateCode: "",
   dailyConfirmed: [],
   dailyDead: [],
-  testData:[],
+  testData: [],
+  selectedStateMapData: {},
+  stateDistricts:[],
 };
 
 export default  (state = INITIAL_STATE, action) => {
@@ -96,16 +98,16 @@ export default  (state = INITIAL_STATE, action) => {
           ...state,
           testData: action.payload,
         };
-      // case SET_STATE_CODE:
-      //   return {
-      //     ...state,
-      //     selectedStateCode: action.payload,
-      //   };
-      // case SET_STATE_CODE:
-      //   return {
-      //     ...state,
-      //     selectedStateCode: action.payload,
-      //   };
+      case SET_STATE_MAP_DATA:
+        return {
+          ...state,
+          selectedStateMapData: action.payload,
+        };
+      case SET_STATE_DISTRICT_DATA:
+        return {
+          ...state,
+          stateDistricts: action.payload,
+        };
       default:
         return state;
     }

@@ -116,7 +116,7 @@ console.log("district");
             <div className="map-and-details-container">
               <div className="map">
                 <div className="map-chart">
-                  {this.props.selectedStateCode.toUpperCase() === "MH" ? (
+                  {this.props.selectedStateCode ? (
                     <StateMapChart />
                   ) : (
                     <MapChart />

@@ -115,3 +115,20 @@
 // }
 // export default connect(mapStateToProps, mapDispatchToProps)(IndiaMap);
 // // export default IndiaMap
+      {
+        /* <div className="zoom-btns">
+        <button className="plus-btn" onClick={setzoomLevel(zoomLevel + 1)}>
+          +
+        </button>
+        <button
+          className="minus-btn"
+          onClick={() => {
+            if (zoomLevel !== 0) {
+              setzoomLevel(zoomLevel - 1);
+            }
+          }}
+        >
+          +
+        </button>
+      </div> */
+      }

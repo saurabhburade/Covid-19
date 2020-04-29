@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./about.css";
 import "./mapchart.css";
 import about from "./Images/Artboard_1.svg";
+import loader from "./Images/loader.svg";
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 
