@@ -61,8 +61,17 @@ justify-content: space-between;
 
  width: 100%;
     /* background-color: bisque; */
-    /* text-align: center; */
+    text-align: left;
     padding: 1%;
+}
+.test-data-detail > p > span:nth-child(2){
+    text-align: right !important;
+  
+}
+.source > span > a{
+
+  display: flex;
+  justify-content: flex-end;
 }
 @media(max-width:800px){
     

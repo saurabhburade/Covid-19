@@ -201,7 +201,7 @@
   border: 1px solid rgb(223, 220, 220);
   display: flex;
   justify-content: stretch;
-  padding: 1% 5% 3% 5%;
+  padding: 1% 2% 3% 2%;
 }
 .map-and-details-container > div {
   width: 100% !important;

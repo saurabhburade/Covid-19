@@ -1,18 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
+import React, { useState, useEffect } from "react";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import {scaleLinear } from "d3-scale";
 import "./statemap.css"
 import { connect } from "react-redux";
-import { csvfy } from "./jsonToCsv";
-import * as d3 from "d3"
-import { MP_TOPO, MH_TOPO } from "../TopoJSON/StateWiseTopoJson";
-// import axios from "axios";
-// import { unwind } from "json2csv/transforms";
-// const { writeFileSync } = require("");
+
 
 
 const StateMapChart = (props) => {
-    console.log("  csvfy()", csvfy());
+   
   const [selectedMapDetail, setselectedMapDetail] = useState({
     state: "",
     confirmed: 0,
@@ -20,18 +15,18 @@ const StateMapChart = (props) => {
     recovered: 0,
     deaths: 0,
   });
-  const maxArr = props.stateData.map((el) => {
-    console.log("parseInt(el.confirmed)", parseInt(el.confirmed));
-    if (el.state !== "Total") {
-      return parseInt(el.confirmed);
-    } else {
-      return 0;
-    }
-  });
-  const maxLimit = Math.max(...maxArr);
-  console.log("maxArr");
+  // const maxArr = props.stateData.map((el) => {
+  //   // console.log("parseInt(el.confirmed)", parseInt(el.confirmed));
+  //   if (el.state !== "Total") {
+  //     return parseInt(el.confirmed);
+  //   } else {
+  //     return 0;
+  //   }
+  // });
+  // const maxLimit = Math.max(...maxArr);
+  // console.log("maxArr");
   const colorScale = scaleLinear()
-    .domain([0, 700])
+    .domain([0, 500])
     .range(["#f7f7f7", "#782618"]);
 
   const [data, setData] = useState([]);
@@ -44,20 +39,7 @@ const [StateMapData, setStateMapData] = useState(
 );
 const [zoomLevel, setzoomLevel] = useState(1)
 const [StateCenter, setStateCenter] = useState([78.9629, 22.5937]);
-console.log("StateMapData", StateMapData);
-// if (selectedStateCode.toUpperCase()==="MP") {
-//    geoUrl =
-//     // "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
-//     // "https://www.covid19india.org/maps/india.json";
-//     //   "https://raw.githubusercontent.com/varunon9/india-choropleth-javascript/master/src/india.topo.json";
-//     MP_TOPO;  
-// }else{
-//    geoUrl =
-//      // "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
-//      // "https://www.covid19india.org/maps/india.json";
-//      //   "https://raw.githubusercontent.com/varunon9/india-choropleth-javascript/master/src/india.topo.json";
-//      MP_TOPO;  
-// }
+// console.log("StateMapData", StateMapData);
 
   
 
@@ -65,11 +47,15 @@ useEffect(() => {
   const stateSelected = props.stateDistricts.find((el) => {
     return el.statecode === props.selectedStateCode.toUpperCase();
   });
+  
+  if (stateSelected) {
   setData(stateSelected.districtData);
+    
+  }
   setStateMapData(props.selectedStateMapData);
   setStateCenter(props.selectedStateMapData.center);
-  console.log("props.selectedStateMapData", props.selectedStateMapData);
-  console.log("stateSelected.districtData", stateSelected.districtData);
+  // console.log("props.selectedStateMapData", props.selectedStateMapData);
+  // console.log("stateSelected.districtData", stateSelected.districtData);
 }, [props.selectedStateCode, props.selectedStateMapData]);
 const geoUrl =
   StateMapData.topo || "https://www.covid19india.org/maps/india.json";
@@ -98,35 +84,11 @@ const geoUrl =
       cursor: "pointer",
     },
   };
-  function mapClick(geo, cur) {
-    console.log(geo, cur);
-  }
-  
+
 
   return (
     <>
-      {/* <div className="zoom-btns">
-        <button
-          className="plus-btn"
-          onClick={() => {setzoomLevel(zoomLevel + 1)
-              console.log("zoomLevel", zoomLevel);
-          
-          }}
-        >
-          +
-        </button>
-        <button
-          className="minus-btn"
-          onClick={() => {
-            if (zoomLevel> 1) {
-              setzoomLevel(zoomLevel - 1);
-              console.log("zoomLevel", zoomLevel);
-            }
-          }}
-        >
-          +
-        </button>
-      </div> */}
+
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{
@@ -154,7 +116,7 @@ const geoUrl =
                   strokeWidth={0.5}
                   onClick={() => {
                     if (cur) {
-                      console.log(cur);
+                      // console.log(cur);
                       setselectedMapDetail({
                         state: cur.district,
                         confirmed: cur.confirmed,
@@ -163,13 +125,13 @@ const geoUrl =
                         deaths: cur.deceased,
                       });
                     }
-                    console.log("selectedMapDetail", selectedMapDetail);
+                    // console.log("selectedMapDetail", selectedMapDetail);
                   }}
                   onMouseLeave={() => {
                     if (cur) {
                       setselectedMapDetail({});
                     }
-                    console.log("selectedMapDetail", selectedMapDetail);
+                    // console.log("selectedMapDetail", selectedMapDetail);
                   }}
                 ></Geography>
               );
@@ -179,7 +141,7 @@ const geoUrl =
       </ComposableMap>
       <div className="map-scale"></div>
       {selectedMapDetail.state ? (
-        <div className="selected-map-details">
+        <div className="selected-State-map-details">
           <p className="selected-map-title">
             <span>{selectedMapDetail.state}</span>
           </p>

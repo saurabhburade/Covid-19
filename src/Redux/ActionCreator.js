@@ -41,13 +41,13 @@ export const fetchStateWise = () => {
         dispatch(setConfirmChartData(confirmData));
         dispatch(setDeadChartData(deadData));
         dispatch(setRecoveredChartData(recoverData));
-        console.log("arr", arr, resp);
+        // console.log("arr", arr, resp);
         let DataArray = [["State", "Active cases"]];
 
         for (let index = 0; index < arr.length; index++) {
           const element = arr[index];
           if (element.state !== "Total") {
-            console.log(element.state);
+            // console.log(element.state);
             DataArray.push([element.state, parseInt(element.active)]);
           }
           if (index === 0) {
@@ -63,7 +63,7 @@ export const fetchStateWise = () => {
       })
       .catch((err) => {
         if (err) {
-          console.log(err);
+          // console.log(err);
           dispatch(fetchStateWiseFail());
           // dispatch(loading(false))
           setTimeout(() => {
@@ -76,11 +76,11 @@ export const fetchStateWise = () => {
       .then((data) => {
         let Arr = [];
         data.forEach((element) => {
-          console.log(
-            new Date().getHours() -
-              new Date(element.timestamp * 1000).getHours() <
-              6
-          );
+          // console.log(
+          //   new Date().getHours() -
+          //     new Date(element.timestamp * 1000).getHours() <
+          //     6
+          // );
           if (
             new Date(element.timestamp * 1000).toDateString() ==
               new Date().toDateString() &&
@@ -95,15 +95,15 @@ export const fetchStateWise = () => {
                 new Date(element.timestamp * 1000).getHours(),
             });
           } else {
-            console.log("object");
+            // console.log("object");
           }
         });
         dispatch(setTodayNews(Arr));
-        console.log("data :", Arr, data);
+        // console.log("data :", Arr, data);
       })
       .catch((err) => console.log(err));
     states_tested_data().then((res) => {
-      console.log(res.states_tested_data);
+      // console.log(res.states_tested_data);
       let arr = [];
       if (res.states_tested_data.length !== 0) {
         for (let index = 0; index < res.states_tested_data.length; index++) {
@@ -125,7 +125,7 @@ export const fetchStateWise = () => {
       }
     }).catch(err=>console.log(err))
     states_district().then((res) => {
-      console.log("statedistricts", res);
+      // console.log("statedistricts", res);
       dispatch(setStateDistrictData(res));
     }).catch(err=>{
       console.log(err);
@@ -235,12 +235,12 @@ export const fetchDistrictWise = (stateName) => {
   return (dispatch, getState) => {
     dispatch(loading(true));
     districtwise().then((result) => {
-      if (result[stateName].districtData) {
+      if (result[stateName]) {
         dispatch(setDistrictWiseData(result[stateName].districtData));
-        console.log(getState()["stateData"]);
+        // console.log(getState()["stateData"]);
         getState()["stateData"].forEach((element) => {
           if (element.state === stateName) {
-            console.log(element);
+            // console.log(element);
             dispatch(setStateTotalData(element));
             dispatch(setStateCode(element.statecode.toLowerCase()));
             // dispatch(loading(false));
@@ -255,16 +255,16 @@ export const fetchDistrictWise = (stateName) => {
       states_daily().then((data) => {
         let dataConf = {},
           dataDead = {};
-        console.log(data.states_daily);
+        // console.log(data.states_daily);
         if (data.states_daily.length !== 0) {
           for (let index = 0; index < data.states_daily.length; index++) {
             const element = data.states_daily[index];
 
             if (element.status === "Confirmed") {
-              console.log(
-                getState()["selectedStateCode"],
-                element[getState()["selectedStateCode"]]
-              );
+              // console.log(
+              //   getState()["selectedStateCode"],
+              //   element[getState()["selectedStateCode"]]
+              // );
               dataConf[element.date] = element[getState()["selectedStateCode"]];
               //   arrConf.push({
               //     confirmed: element[getState()["selectedStateCode"]],
@@ -551,7 +551,7 @@ export const fetchDistrictWise = (stateName) => {
                 setStateMapData({
                   topo: MN_TOPO,
                   center: [93.95001705, 24.79997072],
-                  scaleZoom: 1,
+                  scaleZoom: 2.4,
                 })
               );
               break;
@@ -560,7 +560,7 @@ export const fetchDistrictWise = (stateName) => {
                 setStateMapData({
                   topo: TR_TOPO,
                   center: [91.57999914, 23.83540428],
-                  scaleZoom: 1,
+                  scaleZoom: 3,
                 })
               );
               break;
@@ -568,8 +568,8 @@ export const fetchDistrictWise = (stateName) => {
               dispatch(
                 setStateMapData({
                   topo: MZ_TOPO,
-                  center: [92.72001461, 23.71039899],
-                  scaleZoom: 1,
+                  center: [92.72001461, 23.01039899],
+                  scaleZoom: 2.4,
                 })
               );
               break;
@@ -578,7 +578,7 @@ export const fetchDistrictWise = (stateName) => {
                 setStateMapData({
                   topo: AR_TOPO,
                   center: [94.61660071, 27.50039878],
-                  scaleZoom: 1,
+                  scaleZoom: 1.8,
                 })
               );
               break;
@@ -637,7 +637,7 @@ export const fetchDistrictWise = (stateName) => {
           }, 2000);
         }
       });
-      console.log(result[stateName].districtData);
+      // console.log(result[stateName]);
     });
   };
 };

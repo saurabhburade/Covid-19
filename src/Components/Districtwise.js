@@ -1,14 +1,9 @@
 import React, { Component, Fragment } from "react";
 import "./dashboard.css";
-import { FaBeer } from "react-icons/fa";
-import { TiThListOutline } from "react-icons/ti";
-import Chartkick, { LineChart, PieChart } from "react-chartkick";
+import Chartkick from "react-chartkick";
 import "chart.js";
-import covidIcon from "./Images/06.svg";
-import IndiaMap from "./IndiaMap";
 import { connect } from "react-redux";
-import { fetchStateWise, fetchDistrictWise } from "../Redux/ActionCreator";
-// import Chart from "react-google-charts";
+import { fetchDistrictWise } from "../Redux/ActionCreator";
 import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
@@ -22,14 +17,14 @@ class Districtwise extends Component {
   constructor(props) {
     
     super(props);
-console.log("district");
+// console.log("district");
     this.state = {
       selectedState: "Total",
     };
   }
 
   selectStateHandle = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       selectedState: e.target.value,
     });
@@ -86,7 +81,6 @@ console.log("district");
                     {this.props.selectedStateTotal.confirmed
                       ? this.props.selectedStateTotal.confirmed
                       : this.props.totalCases.confirmed || "Loading..."}
-                    {/* {this.props.totalCases.confirmed || "Loading..."} */}
                   </p>
                 </div>
               </div>{" "}
@@ -97,7 +91,6 @@ console.log("district");
                     {this.props.selectedStateTotal.recovered
                       ? this.props.selectedStateTotal.recovered
                       : this.props.totalCases.recovered || "Loading..."}
-                    {/* {this.props.totalCases.recovered || "Loading..."} */}
                   </p>
                 </div>
               </div>
@@ -108,7 +101,6 @@ console.log("district");
                     {this.props.selectedStateTotal.deaths
                       ? this.props.selectedStateTotal.deaths
                       : this.props.totalCases.deaths || "Loading..."}
-                    {/* {this.props.totalCases.deaths || "Loading..."} */}
                   </p>
                 </div>
               </div>
@@ -163,7 +155,7 @@ console.log("district");
                         return (
                           <Statecard
                             percentage={parseInt(
-                              element.confirmed / element.recovered
+                              (element.recovered * 100) / element.confirmed
                             )}
                             Confirmed={element.confirmed}
                             Active={element.active}
@@ -193,7 +185,7 @@ console.log("district");
                   <div className="aw-card">
                     <div className="total-case-chart">
                       <Confirmedchart
-                        label="Dead Cases"
+                        label="Death Cases"
                         color="#d11111"
                         chatConfirmData={this.props.dailyDead}
                       />
@@ -247,7 +239,6 @@ console.log("district");
           </div>
         </div>
 
-        {/* <img style={{ width: "10em" }} src={loader} alt="" /> */}
       </div>
     );
   }
@@ -267,7 +258,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchStateWise: () => dispatch(fetchStateWise()),
     fetchDistrictWise: (stateName) => dispatch(fetchDistrictWise(stateName)),
   };
 };

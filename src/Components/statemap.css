@@ -1,4 +1,4 @@
-    /* .rsm-svg{
+/* .rsm-svg{
         background-color: orange;
         position: relative;
         top: 0;
@@ -6,35 +6,87 @@
         justify-content: center;
         align-items: center;
     } */
-    .zoom-btns{
-        width: 2em;
-        position: absolute;
-        top: 1%;
-        right: 1%;
-        background-color: rgba(240, 240, 240, 0.658);
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-        align-items: center;
-        padding: 1%;
-        border-radius: 5px;
-    }
-       .zoom-btns > button{
-           width: 100%;
-           height: 100%;
-           margin: 5%;
-           padding: 5%;
-           background-color: black;
-           color: whitesmoke;
-           border: none;
-           font-weight: 600;
-        border-radius: 10px;
-        outline: none;
-        transition-duration: 300ms;
-           
-           
-       }
-       .zoom-btns > button:active{
-           background-color: rgb(168, 164, 164);
-           
-       }
+/* .zoom-btns {
+  width: 2em;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  background-color: rgba(240, 240, 240, 0.658);
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  padding: 1%;
+  border-radius: 5px;
+}
+.zoom-btns > button {
+  width: 100%;
+  height: 100%;
+  margin: 5%;
+  padding: 5%;
+  background-color: black;
+  color: whitesmoke;
+  border: none;
+  font-weight: 600;
+  border-radius: 10px;
+  outline: none;
+  transition-duration: 300ms;
+}
+.zoom-btns > button:active {
+  background-color: rgb(168, 164, 164);
+} */
+.selected-State-map-details {
+  background-color: #e9e9e986;
+  width: 100%;
+  position: absolute;
+  bottom: 0%;
+  padding: 2%;
+ 
+  height: auto;
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+}
+.selected-State-map-details > p {
+  display: flex;
+  font-weight: 500;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+ .selected-State-map-details > p> span{
+     font-size: .9em;
+     margin: 0% 5%;
+ }
+ @media(max-width:800px){
+.selected-State-map-details{
+  background-color: #e9e9e986;
+width: auto;
+  position: relative;
+  bottom: 0%;
+  padding: 2%;
+  margin: 2%;
+  height: auto;
+  z-index: 9;
+  display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 10px;
+ 
+}
+.selected-State-map-details > p{
+  margin: 2% 1%;
+  width: 100%;
+   display: flex;
+  
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+}

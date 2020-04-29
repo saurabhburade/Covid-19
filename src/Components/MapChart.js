@@ -18,7 +18,7 @@ const MapChart = (props) => {
     deaths: 0,
   });
   const maxArr = props.stateData.map((el) => {
-    console.log("parseInt(el.confirmed)", parseInt(el.confirmed));
+    // console.log("parseInt(el.confirmed)", parseInt(el.confirmed));
     if (el.state !== "Total") {
       return parseInt(el.confirmed);
     } else {
@@ -26,7 +26,7 @@ const MapChart = (props) => {
     }
   });
   const maxLimit = Math.max(...maxArr);
-  console.log("maxArr");
+  // console.log("maxArr");
   const colorScale = scaleLinear()
     .domain([0, maxLimit])
     .range(["#ffedea", "#782618"]);
@@ -39,7 +39,7 @@ const MapChart = (props) => {
     csv("https://api.covid19india.org/csv/latest/state_wise.csv").then(
       (counties) => {
         setData(counties);
-        console.log("object",counties);
+        // console.log("object",counties);
       }
     );
   }, []);
@@ -59,9 +59,7 @@ const MapChart = (props) => {
       cursor: "pointer",
     },
   };
-  function mapClick(geo, cur) {
-    console.log(geo, cur);
-  }
+
   return (
     <>
       <ComposableMap
@@ -76,23 +74,23 @@ const MapChart = (props) => {
             geographies.map((geo) => {
               
               const cur = data.find((s) => {
-                console.log("s geo india",s,geo);
+                // console.log("s geo india",s,geo);
                 return s.State === geo.properties.st_nm;
               });
-              console.log(
-                "cur",
-                cur
-                  ? "conf in " +
-                      parseInt(cur.Confirmed) +
-                      "conf  " +
-                      cur.Confirmed
-                  : null
-              );
+              // console.log(
+              //   "cur",
+              //   cur
+              //     /? "conf in " +
+              //         parseInt(cur.Confirmed) +
+              //         "conf  " +
+              //         cur.Confirmed
+              //     : null
+              // );
               return (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={cur ? colorScale(parseInt(cur.Confirmed)) : "#cfff"}
+                  fill={cur ? colorScale(parseInt(cur.Confirmed)) : "#ffff"}
                   style={geographyStyle}
                   stroke="#6d6d6d"
                   strokeWidth={0.2}
@@ -106,13 +104,13 @@ const MapChart = (props) => {
                         deaths: cur.Deaths,
                       });
                     }
-                    console.log("selectedMapDetail", selectedMapDetail);
+                    // console.log("selectedMapDetail", selectedMapDetail);
                   }}
                   onMouseLeave={() => {
                     if (cur) {
                       setselectedMapDetail({});
                     }
-                    console.log("selectedMapDetail", selectedMapDetail);
+                    // console.log("selectedMapDetail", selectedMapDetail);
                   }}
                 ></Geography>
               );

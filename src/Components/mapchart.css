@@ -10,9 +10,9 @@ svg {
 }
 .selected-map-details{
   background-color: #e9e9e986;
-width: 12em;
+width: 10em;
   position: absolute;
-  top: 0;
+  bottom: 0;
   padding: 2%;
   margin: 2%;
   height: auto;
@@ -39,9 +39,11 @@ width: 12em;
 }
 .map-scale{
   width: auto;
+  height: 2px;
+  
   position: absolute;
   right: 10%;
-  bottom: 10%;
+  top: 10%;
   padding: 0.7% 10%;
  background: linear-gradient(90deg, #ffedea 0%, #782618 100%);
 }
@@ -78,7 +80,7 @@ width: auto;
   width: auto;
   position: absolute;
   right: 10%;
-  bottom: 10%;
+  top: 1%;
   padding: 0.7% 10%;
  background: linear-gradient(90deg, #ffedea 0%, #782618 100%);
 }

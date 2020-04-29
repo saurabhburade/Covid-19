@@ -12,7 +12,7 @@
     margin:5% 10%;
     display: flex;
     justify-content: center;
-
+align-items: flex-start;
     flex-direction: column;
   opacity: 0.1;
   transition-duration: 900ms;
@@ -61,17 +61,28 @@
 
 
     width: auto;
-    min-height: 60vh;
+   height: auto;
   /* background-color:linear-gradient(180deg ,rgb(241, 241, 241) 0% , rgb(245, 244, 244) 50% ,white  100% ); */
-    background-image: url("./Images/undraw_work_chat_erdt.svg");
-    background-repeat:  no-repeat;
+    /* background-image: url("./Images/undraw_work_chat_erdt.svg"); */
+    /* background-repeat:  no-repeat; */
   background-position-y:bottom ;
     background-size: contain;
-    margin:5% 1%;
-    padding: 5% 10%;
+  
+    padding: 0%;
     display: flex;
     justify-content: flex-start;
-
+align-items: flex-start;
     flex-direction: column;
+}
+.project-title{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: rgb(78, 92, 105);
+ 
+    white-space: pre-wrap;
+}
+.home-cont{
+  justify-content: flex-start;
+  text-align: left;
 }
 }

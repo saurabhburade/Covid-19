@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
-// import Chartkick, { LineChart } from 'react-chartkick';
 import { connect } from "react-redux";
-// Chartkick.options = {
-//     colors: ["#fff0", "orange"]
-// }
+
 function Statecard(props) {
   return (
     <Fragment>
@@ -33,10 +30,6 @@ const mapStateToProps = (state) => {
     stateData: state.stateData,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // fetchStateWise: () => dispatch(fetchStateWise())
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Statecard);
+
+export default connect(mapStateToProps, null)(Statecard);
 // export default Activechart;

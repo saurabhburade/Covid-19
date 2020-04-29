@@ -1,18 +1,9 @@
 import React from 'react';
 import Chartkick, { LineChart } from 'react-chartkick';
 import { connect } from 'react-redux';
-// Chartkick.options = {
-//   colors: [props.color, "orange"],
-// };
+
 function Confirmedchart(props) {
-//     let data={}
-// if (props.data) {
-//     props.chartData.foreach(element => {
-//         data[element.date] = element.totalconfirmed
-//         // {(element.date) ,(element.totalconfirmed)}
-//     }) 
-//     console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",data);
-// }
+
 
 console.log(props.chartData);
     return (
@@ -31,15 +22,6 @@ console.log(props.chartData);
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        // chatConfirmData: state.chatConfirmData
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        // fetchStateWise: () => dispatch(fetchStateWise())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Confirmedchart);
+
+export default Confirmedchart;
 // export default Activechart;

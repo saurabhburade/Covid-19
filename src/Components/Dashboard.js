@@ -1,40 +1,14 @@
 import React, { Component } from "react";
 import "./dashboard.css";
-import { FaBeer } from "react-icons/fa";
-import { TiThListOutline } from "react-icons/ti";
-import Chartkick, { LineChart, PieChart } from "react-chartkick";
+import Chartkick from "react-chartkick";
 import "chart.js";
-import covidIcon from "./Images/06.svg";
-import IndiaMap from "./IndiaMap";
-import { connect } from "react-redux";
-import { fetchStateWise } from "../Redux/ActionCreator";
-// import Chart from "react-google-charts";
 import Confirmedchart from "./Confirmedchart";
 import Statecard from "./Statecard";
 import cough from "./Images/coughing__monochromatic.svg";
-import Header from "./Header";
 import MapChart from "./MapChart";
+import { connect } from "react-redux";
 Chartkick.options = {
   colors: ["#b00", "#666"],
-
-  //   scales: {
-  //     yAxes: [
-  //       {
-  //         gridLines: {
-  //           drawBorder: false,
-  //         },
-  //       },
-  //     ],
-  //   },
-  //   scales: {
-  //     xAxes: [
-  //       {
-  //         ticks: {
-  //           display: false, //this will remove only the label
-  //         },
-  //       },
-  //     ],
-  //   },
 };
 class Dashboard extends Component {
   constructor(props) {
@@ -42,9 +16,7 @@ class Dashboard extends Component {
 
     this.state = {};
   }
-  componentDidMount() {
-    // this.props.fetchStateWise();
-  }
+
   render() {
     return (
       <div className="dashContainer">
@@ -58,25 +30,7 @@ class Dashboard extends Component {
                     {this.props.totalCases.active || "Loading..."}
                   </p>
                 </div>
-                {/* <div className="total-case-chart"> */}
-                {/* <Chart
-                    width={"10em"}
-                    height={"100%"}
-                    chartType="LineChart"
-                    loader={<div>Loading Chart</div>}
-                    data={[
-                      ["x", "y"],
-                      [0, 0],
-                      [1, 10],
-                      [2, 0],
-                      [3, 10],
-                    ]}
-                    options={{
-                      legend: "none",
-                    }}
-                  /> */}
-                {/* <Confirmedchart /> */}
-                {/* </div> */}
+
               </div>
               <div className="total-cases-card">
                 <div className="total-cases-detail">
@@ -156,7 +110,7 @@ class Dashboard extends Component {
               <div className="aw-card">
                 <div className="total-case-chart">
                   <Confirmedchart
-                    label="Dead Cases"
+                    label="Death Cases"
                     color="#d11111"
                     chatConfirmData={this.props.chartDeadData}
                   />
